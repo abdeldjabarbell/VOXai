@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VOX — AI Agents </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursor-follower"></div>
+
+<!-- PARTICLES -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="logo-icon">
+        <!--  
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="4" r="2.5" fill="url(#lg1)"/>
+          <circle cx="27" cy="10" r="2.5" fill="url(#lg1)"/>
+          <circle cx="27" cy="22" r="2.5" fill="url(#lg1)"/>
+          <circle cx="16" cy="28" r="2.5" fill="url(#lg1)"/>
+          <circle cx="5" cy="22" r="2.5" fill="url(#lg1)"/>
+          <circle cx="5" cy="10" r="2.5" fill="url(#lg1)"/>
+          <circle cx="16" cy="16" r="3" fill="url(#lg1)"/>
+          <line x1="16" y1="4" x2="27" y2="10" stroke="#7c3aed" stroke-width="1.2"/>
+          <line x1="27" y1="10" x2="27" y2="22" stroke="#7c3aed" stroke-width="1.2"/>
+          <line x1="27" y1="22" x2="16" y2="28" stroke="#7c3aed" stroke-width="1.2"/>
+          <line x1="16" y1="28" x2="5" y2="22" stroke="#7c3aed" stroke-width="1.2"/>
+          <line x1="5" y1="22" x2="5" y2="10" stroke="#7c3aed" stroke-width="1.2"/>
+          <line x1="5" y1="10" x2="16" y2="4" stroke="#7c3aed" stroke-width="1.2"/>
+          <line x1="16" y1="4" x2="16" y2="16" stroke="#a78bfa" stroke-width="1"/>
+          <line x1="27" y1="10" x2="16" y2="16" stroke="#a78bfa" stroke-width="1"/>
+          <line x1="27" y1="22" x2="16" y2="16" stroke="#a78bfa" stroke-width="1"/>
+          <line x1="16" y1="28" x2="16" y2="16" stroke="#a78bfa" stroke-width="1"/>
+          <line x1="5" y1="22" x2="16" y2="16" stroke="#a78bfa" stroke-width="1"/>
+          <line x1="5" y1="10" x2="16" y2="16" stroke="#a78bfa" stroke-width="1"/>
+          <defs>
+            <radialGradient id="lg1" cx="50%" cy="30%">
+              <stop offset="0%" stop-color="#e0d7ff"/>
+              <stop offset="100%" stop-color="#7c3aed"/>
+            </radialGradient>
+          </defs>
+        </svg>
+         -->
+
+         <img src="img/vox.ai design AI .png" width="32" height="32" alt="">
+        
+      
+      </div>
+      <span class="logo-text">VOX<span class="logo-ai"> - AI</span></span>
+    </a>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#services" data-i18n="nav_services">Services</a></li>
+      <li><a href="#industries" data-i18n="nav_industries">Industries</a></li>
+      <li><a href="#team" data-i18n="nav_team">Team</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <!-- Language Switcher -->
+      <div class="lang-switcher" id="lang-switcher">
+        <button class="lang-btn" id="lang-btn">
+          <span class="lang-globe">🌐</span>
+          <span id="current-lang">FR</span>
+          <span class="lang-arrow">▾</span>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown">
+          <button onclick="setLang('fr')" class="lang-option active">🇫🇷 Français</button>
+          <button onclick="setLang('en')" class="lang-option">🇬🇧 English</button>
+          <button onclick="setLang('ar')" class="lang-option">🇩🇿 العربية</button>
+          <button onclick="setLang('es')" class="lang-option">🇪🇸 Español</button>
+          <button onclick="setLang('pt')" class="lang-option">🇵🇹 Português</button>
+          <button onclick="setLang('de')" class="lang-option">🇩🇪 Deutsch</button>
+          <button onclick="setLang('mt')" class="lang-option">🇲🇹 Malti</button>
+        </div>
+      </div>
+      <a href="#contact" class="btn-primary" data-i18n="nav_cta">Démarrer</a>
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-glow"></div>
+  <div class="hero-grid">
+      <img src="img/vox.ai design AI .png"   width="300" height="300" alt="">
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge" data-i18n="hero_badge">✦ Intelligence Artificielle de Nouvelle Génération</div>
+    <h1 class="hero-title">
+      <span class="hero-line" data-i18n="hero_line1">Boostez votre business</span>
+      <span class="hero-line gradient-text" data-i18n="hero_line2">avec des AI Agents</span>
+      <span class="hero-line" data-i18n="hero_line3">sur mesure.</span>
+    </h1>
+    <p class="hero-sub" data-i18n="hero_sub">VOX.ai crée des agents intelligents qui automatisent vos appels, emails, réservations et plus — 24h/24, 7j/7, sans erreur.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary btn-lg" data-i18n="hero_cta1">Démarrer le projet</a>
+      <a href="#services" class="btn-ghost btn-lg" data-i18n="hero_cta2">Découvrir nos services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">24/7</span><span class="stat-label" data-i18n="stat1">Disponibilité</span></div>
+      <div class="stat-sep"></div>
+      <div class="stat"><span class="stat-num">−70%</span><span class="stat-label" data-i18n="stat2">Coûts opérationnels</span></div>
+      <div class="stat-sep"></div>
+      <div class="stat"><span class="stat-num">100%</span><span class="stat-label" data-i18n="stat3">Personnalisé</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-orb">
+            <img src="img/vox.ai design AI .png" alt="">
+    </div>
+    <div class="floating-card fc1">
+      <div class="fc-icon">📞</div>
+      <div class="fc-text">
+        <span class="fc-title" data-i18n="fc1_title">Appel automatisé</span>
+        <span class="fc-sub">AI Agent actif</span>
+      </div>
+      <div class="fc-dot"></div>
+    </div>
+    <div class="floating-card fc2">
+      <div class="fc-icon">📅</div>
+      <div class="fc-text">
+        <span class="fc-title" data-i18n="fc2_title">Réservation confirmée</span>
+        <span class="fc-sub">Restaurant • H/24</span>
+      </div>
+    </div>
+    <div class="floating-card fc3">
+      <div class="fc-icon">✉️</div>
+      <div class="fc-text">
+        <span class="fc-title" data-i18n="fc3_title">Email traité</span>
+        <span class="fc-sub">Réponse en 2 sec</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span data-i18n="scroll">Défiler</span>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag" data-i18n="services_tag">Ce que nous faisons</span>
+      <h2 data-i18n="services_title">Nos Services d'Intelligence Artificielle</h2>
+      <p data-i18n="services_sub">Des solutions IA clé-en-main pour automatiser, optimiser et transformer votre activité.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card sc-featured">
+        <div class="sc-glow"></div>
+        <div class="sc-icon">🤖</div>
+        <h3 data-i18n="s1_title">AI Agent Téléphonique</h3>
+        <p data-i18n="s1_desc">Un agent vocal intelligent qui répond à vos appels, qualifie les demandes, prend des rendez-vous et traite les réclamations — 24h/24.</p>
+        <ul class="sc-features">
+          <li data-i18n="s1_f1">✓ Réponse instantanée</li>
+          <li data-i18n="s1_f2">✓ Transfert intelligent</li>
+          <li data-i18n="s1_f3">✓ Multilingue</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon">📧</div>
+        <h3 data-i18n="s2_title">Gestion d'Emails IA</h3>
+        <p data-i18n="s2_desc">Tri, réponse automatique et escalade intelligente de vos emails entrants. Zéro email ignoré.</p>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon">📅</div>
+        <h3 data-i18n="s3_title">Réservations & Rendez-vous</h3>
+        <p data-i18n="s3_desc">Système de réservation automatique pour restaurants, hôtels, cliniques — synchronisé avec votre agenda.</p>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon">💬</div>
+        <h3 data-i18n="s4_title">Chatbot Client Avancé</h3>
+        <p data-i18n="s4_desc">Intégration sur votre site, WhatsApp, ou Instagram. Répond, conseille, vend et fidélise vos clients.</p>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon">📊</div>
+        <h3 data-i18n="s5_title">Analyse & Reporting IA</h3>
+        <p data-i18n="s5_desc">Dashboards intelligents avec insights automatiques sur vos performances, tendances et opportunités.</p>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon">⚙️</div>
+        <h3 data-i18n="s6_title">Automatisation sur Mesure</h3>
+        <p data-i18n="s6_desc">Workflow IA personnalisé pour n'importe quelle tâche répétitive dans votre entreprise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag" data-i18n="ind_tag">Nos domaines</span>
+      <h2 data-i18n="ind_title">Des agents IA pour chaque secteur</h2>
+      <p data-i18n="ind_sub">Nous développons des solutions adaptées aux réalités de chaque industrie.</p>
+    </div>
+    <div class="industries-grid">
+      <div class="ind-card" data-hover="restaurants">
+        <div class="ind-icon">🍽️</div>
+        <h3 data-i18n="ind1_title">Restaurants</h3>
+        <p data-i18n="ind1_desc">Réservations automatiques, commandes, réclamations, suivi de satisfaction client.</p>
+        <div class="ind-tag-list">
+          <span data-i18n="ind1_t1">Réservation</span><span data-i18n="ind1_t2">Commandes</span><span data-i18n="ind1_t3">Avis clients</span>
+        </div>
+      </div>
+      <div class="ind-card" data-hover="clinics">
+        <div class="ind-icon">🏥</div>
+        <h3 data-i18n="ind2_title">Cliniques Médicales</h3>
+        <p data-i18n="ind2_desc">Prise de rendez-vous, rappels de consultations, suivi patient et gestion des urgences.</p>
+        <div class="ind-tag-list">
+          <span data-i18n="ind2_t1">Rendez-vous</span><span data-i18n="ind2_t2">Rappels</span><span data-i18n="ind2_t3">Suivi patient</span>
+        </div>
+      </div>
+      <div class="ind-card" data-hover="hotels">
+        <div class="ind-icon">🏨</div>
+        <h3 data-i18n="ind3_title">Hôtels</h3>
+        <p data-i18n="ind3_desc">Gestion des réservations, conciergerie virtuelle, check-in/check-out automatisé.</p>
+        <div class="ind-tag-list">
+          <span data-i18n="ind3_t1">Réservations</span><span data-i18n="ind3_t2">Conciergerie</span><span data-i18n="ind3_t3">Check-in</span>
+        </div>
+      </div>
+      <div class="ind-card" data-hover="auto">
+        <div class="ind-icon">🚗</div>
+        <h3 data-i18n="ind4_title">Vente Automobile</h3>
+        <p data-i18n="ind4_desc">Qualification des leads, essais routiers, suivi client, relances automatiques et devis instantanés.</p>
+        <div class="ind-tag-list">
+          <span data-i18n="ind4_t1">Leads</span><span data-i18n="ind4_t2">Essais</span><span data-i18n="ind4_t3">Devis IA</span>
+        </div>
+      </div>
+      <div class="ind-card" data-hover="agencies">
+        <div class="ind-icon">📞</div>
+        <h3 data-i18n="ind5_title">Agences & Call Centers</h3>
+        <p data-i18n="ind5_desc">Automatisation des appels entrants et sortants, gestion des emails en masse, reporting en temps réel.</p>
+        <div class="ind-tag-list">
+          <span data-i18n="ind5_t1">Appels IA</span><span data-i18n="ind5_t2">Emails auto</span><span data-i18n="ind5_t3">Reporting</span>
+        </div>
+      </div>
+      <div class="ind-card ind-card-cta">
+        <div class="ind-icon">🌐</div>
+        <h3 data-i18n="ind6_title">Votre secteur ?</h3>
+        <p data-i18n="ind6_desc">Si votre métier implique de la communication client, de la répétition ou de la gestion — nous avons une solution IA pour vous.</p>
+        <a href="#contact" class="btn-primary" data-i18n="ind6_cta">Parlez-nous</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag" data-i18n="how_tag">Notre processus</span>
+      <h2 data-i18n="how_title">De l'idée à l'agent IA opérationnel</h2>
+    </div>
+    <div class="steps-track">
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3 data-i18n="step1_title">Audit & Analyse</h3>
+          <p data-i18n="step1_desc">Nous analysons vos processus actuels, vos points de friction et vos objectifs de croissance.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3 data-i18n="step2_title">Design de l'Agent</h3>
+          <p data-i18n="step2_desc">Nous concevons un agent IA personnalisé — personnalité, flux de dialogue, intégrations.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3 data-i18n="step3_title">Développement & Tests</h3>
+          <p data-i18n="step3_desc">Développement rapide avec des cycles de test intensifs pour garantir la fiabilité.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h3 data-i18n="step4_title">Déploiement & Suivi</h3>
+          <p data-i18n="step4_desc">Mise en production, formation de vos équipes, monitoring continu et optimisation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag" data-i18n="team_tag">Notre équipe</span>
+      <h2 data-i18n="team_title">Les fondateurs de VOX.ai</h2>
+      <p data-i18n="team_sub">Deux passionnés d'IA au service de votre transformation digitale.</p>
+    </div>
+    <div class="team-slider-wrapper">
+      <div class="team-slider" id="team-slider">
+        <!-- Card 1 -->
+        <div class="team-card">
+          <div class="tc-glow"></div>
+          <div class="tc-avatar">
+            <div class="tc-avatar-inner">AB</div>
+            <div class="tc-avatar-ring"></div>
+          </div>
+          <div class="tc-info">
+            <h3>Abdeldjabar Bellakhdar</h3>
+            <span class="tc-role" data-i18n="role1">Co-Fondateur & Directeur Technique</span>
+            <p class="tc-bio" data-i18n="bio1">Expert en intelligence artificielle et développement de solutions automatisées. Abdeldjabar pilote l'architecture technique des agents IA de VOX.ai.</p>
+            <div class="tc-tags">
+              <span>AI Development</span>
+              <span>Automation</span>
+              <span>Architecture</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="team-card">
+          <div class="tc-glow tc-glow2"></div>
+          <div class="tc-avatar">
+            <div class="tc-avatar-inner" style="background: linear-gradient(135deg,#06b6d4,#7c3aed)">RY</div>
+            <div class="tc-avatar-ring"></div>
+          </div>
+          <div class="tc-info">
+            <h3>Ramy Yazid Saadi</h3>
+            <span class="tc-role" data-i18n="role2">Co-Fondateur & Directeur Stratégie</span>
+            <p class="tc-bio" data-i18n="bio2">Stratège en transformation digitale et développement commercial. Ramy orchestre la vision produit et les relations clients de VOX.ai.</p>
+            <div class="tc-tags">
+              <span>Strategy</span>
+              <span>Business Dev</span>
+              <span>Product</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-dots">
+        <button class="sdot active" onclick="goSlide(0)"></button>
+        <button class="sdot" onclick="goSlide(1)"></button>
+      </div>
+      <button class="slider-arrow sa-prev" onclick="goSlide(-1, true)">‹</button>
+      <button class="slider-arrow sa-next" onclick="goSlide(1, true)">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag" data-i18n="why_tag">Pourquoi VOX.ai</span>
+      <h2 data-i18n="why_title">Ce qui nous rend différents</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <h3 data-i18n="w1_title">Déploiement rapide</h3>
+        <p data-i18n="w1_desc">Votre agent IA opérationnel en moins de 2 semaines.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🎯</div>
+        <h3 data-i18n="w2_title">100% sur mesure</h3>
+        <p data-i18n="w2_desc">Chaque solution est construite spécifiquement pour vos besoins.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔒</div>
+        <h3 data-i18n="w3_title">Sécurité garantie</h3>
+        <p data-i18n="w3_desc">Données hébergées en toute sécurité, conformité RGPD assurée.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌍</div>
+        <h3 data-i18n="w4_title">Multilingue natif</h3>
+        <p data-i18n="w4_desc">Agents capables de communiquer en arabe, français, anglais et plus.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📈</div>
+        <h3 data-i18n="w5_title">ROI mesurable</h3>
+        <p data-i18n="w5_desc">Résultats quantifiables dès les premières semaines de déploiement.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <h3 data-i18n="w6_title">Support dédié</h3>
+        <p data-i18n="w6_desc">Une équipe dédiée pour vous accompagner tout au long du projet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrapper">
+      <div class="contact-left">
+        <span class="section-tag" data-i18n="contact_tag">Contactez-nous</span>
+        <h2 data-i18n="contact_title">Prêt à transformer votre business avec l'IA ?</h2>
+        <p data-i18n="contact_sub">Parlez-nous de votre projet. Nous vous proposerons une démonstration personnalisée gratuite.</p>
+        <div class="contact-info">
+          <div class="ci-item">
+            <span class="ci-icon">📧</span>
+            <span>contact@vox-ai.agency</span>
+          </div>
+          <div class="ci-item">
+            <span class="ci-icon">📞</span>
+            <span>+213 XX XX XX XX</span>
+          </div>
+          <div class="ci-item">
+            <span class="ci-icon">📍</span>
+            <span data-i18n="ci_loc">Algérie — Disponible dans le monde entier</span>
+          </div>
+        </div>
+        <div class="contact-socials">
+          <a href="#" class="csoc">LinkedIn</a>
+          <a href="#" class="csoc">WhatsApp</a>
+          <a href="#" class="csoc">Instagram</a>
+        </div>
+      </div>
+      <div class="contact-right">
+        <div class="contact-form-card">
+          <div class="cfc-glow"></div>
+          <div class="form-group">
+            <label data-i18n="f_name">Nom complet</label>
+            <input type="text" id="f-name" data-i18n-ph="fph_name" placeholder="Votre nom"/>
+          </div>
+          <div class="form-group">
+            <label data-i18n="f_email">Email</label>
+            <input type="email" id="f-email" data-i18n-ph="fph_email" placeholder="votre@email.com"/>
+          </div>
+          <div class="form-group">
+            <label data-i18n="f_sector">Secteur d'activité</label>
+            <select id="f-sector">
+              <option value="" data-i18n="fopt0">Sélectionnez votre secteur</option>
+              <option data-i18n="fopt1">Restaurant</option>
+              <option data-i18n="fopt2">Clinique médicale</option>
+              <option data-i18n="fopt3">Hôtel</option>
+              <option data-i18n="fopt4">Vente automobile</option>
+              <option data-i18n="fopt5">Agence / Call Center</option>
+              <option data-i18n="fopt6">Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label data-i18n="f_msg">Message</label>
+            <textarea id="f-msg" rows="4" data-i18n-ph="fph_msg" placeholder="Décrivez votre besoin..."></textarea>
+          </div>
+          <button class="btn-primary btn-full" onclick="submitForm()" data-i18n="f_send">Envoyer la demande →</button>
+          <p id="form-success" class="form-success" style="display:none" data-i18n="f_success">✅ Merci ! Nous vous répondrons dans les 24h.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="logo-text">VOX<span class="logo-ai">.ai</span></span>
+        <p data-i18n="footer_desc">Automatisez. Optimisez. Évoluez.<br>L'IA au service de votre croissance.</p>
+      </div>
+      <div class="footer-links">
+        <div class="fl-col">
+          <h4 data-i18n="fl1">Services</h4>
+          <a href="#services" data-i18n="fl1_1">Agents Vocaux</a>
+          <a href="#services" data-i18n="fl1_2">Gestion Email</a>
+          <a href="#services" data-i18n="fl1_3">Chatbots</a>
+          <a href="#services" data-i18n="fl1_4">Automatisation</a>
+        </div>
+        <div class="fl-col">
+          <h4 data-i18n="fl2">Industries</h4>
+          <a href="#industries" data-i18n="fl2_1">Restaurants</a>
+          <a href="#industries" data-i18n="fl2_2">Cliniques</a>
+          <a href="#industries" data-i18n="fl2_3">Hôtels</a>
+          <a href="#industries" data-i18n="fl2_4">Automobile</a>
+        </div>
+        <div class="fl-col">
+          <h4 data-i18n="fl3">Entreprise</h4>
+          <a href="#team" data-i18n="fl3_1">Notre équipe</a>
+          <a href="#contact" data-i18n="fl3_2">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 VOX.ai — <span data-i18n="footer_rights">Tous droits réservés</span></span>
+      <span data-i18n="footer_made">Conçu avec ❤️ par VOX.ai</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
