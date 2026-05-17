@@ -428,18 +428,18 @@ const navLinks = document.getElementById('nav-links');
 const nav = document.getElementById('navbar');
 
 hamburger.addEventListener('click', () => {
+  if (window.scrollY > 40) nav.classList.toggle('scrolled');
   hamburger.classList.toggle('open');
   navLinks.classList.toggle('open');
-  if (window.scrollY > 40) nav.classList.toggle('scrolled');
 
   
 
  
 });
 navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  if (window.scrollY > 40) nav.classList.toggle('scrolled');
   hamburger.classList.remove('open');
   navLinks.classList.remove('open');
-  if (window.scrollY > 40) nav.classList.toggle('scrolled');
 
 }));
 
