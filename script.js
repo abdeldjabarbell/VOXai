@@ -408,20 +408,39 @@ document.getElementById('lang-dropdown').addEventListener('click', e => e.stopPr
 // ─── NAVBAR SCROLL ─────────────────────────────
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('navbar');
+  const navLinks = document.getElementById('nav-links');
+
   if (window.scrollY > 40) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
+  if (
+    navLinks.classList.contains('nav-links') &&
+    navLinks.classList.contains('open')
+  ) {
+      console.log('les deux classes existent');
+      nav.classList.remove('scrolled');
+  }
+  if (window.scrollY < 40) nav.classList.remove('scrolled');
+
 });
 
 // ─── HAMBURGER ─────────────────────────────────
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
+const nav = document.getElementById('navbar');
+
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('open');
   navLinks.classList.toggle('open');
+  if (window.scrollY > 40) nav.classList.toggle('scrolled');
+
+  
+
+ 
 });
 navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   hamburger.classList.remove('open');
   navLinks.classList.remove('open');
+  if (window.scrollY > 40) nav.classList.toggle('scrolled');
+
 }));
 
 // ─── CUSTOM CURSOR ─────────────────────────────
